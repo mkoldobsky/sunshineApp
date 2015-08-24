@@ -29,7 +29,7 @@ public class MainActivityFragment extends Fragment {
             list.add(forecasts[i]);
         }
 
-        final ArrayAdapter adapter = new ArrayAdapter(inflater.getContext(), android.R.layout.simple_list_item_1, list);
+        final ArrayAdapter adapter = new ArrayAdapter(inflater.getContext(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, list);
         listView.setAdapter(adapter);
 
         return rootView;
