@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sunshine</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="sampleTitleText">Today, August 24</string>
+    <string name="sampleMaxTempText">21º</string>
+    <string name="sampleMinTempText">8º</string>
+</resources>
