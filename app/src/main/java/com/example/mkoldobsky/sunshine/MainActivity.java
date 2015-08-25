@@ -1,6 +1,7 @@
 package com.example.mkoldobsky.sunshine;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if(id == R.id.action_settings){
+            Intent settingsIntent = new Intent(this.getApplicationContext(), SettingsActivity.class);
+            startActivity(settingsIntent);
             return true;
         }
 

@@ -2,8 +2,10 @@ package com.example.mkoldobsky.sunshine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.format.Time;
@@ -64,6 +66,10 @@ public class MainActivityFragment extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            String postalCodePref = sharedPreferences.getString(getString(R.string.pref_location_key), null);
+            postalCode = postalCodePref != null ? postalCodePref:postalCode;
             FetchWeatherAsync fetchWeatherAsync = new FetchWeatherAsync();
             fetchWeatherAsync.execute(postalCode);
             return true;
