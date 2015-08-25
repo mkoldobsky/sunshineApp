@@ -5,4 +5,5 @@
     <string name="sampleTitleText">Today, August 24</string>
     <string name="sampleMaxTempText">21º</string>
     <string name="sampleMinTempText">8º</string>
+    <string name="refreshTitle">Refresh</string>
 </resources>
