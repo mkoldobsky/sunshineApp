@@ -48,6 +48,12 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public void onStart(){
+        super.onStart();
+        updateWeather();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Add this line in order for this fragment to handle menu events.
@@ -66,15 +72,19 @@ public class MainActivityFragment extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-            String postalCodePref = sharedPreferences.getString(getString(R.string.pref_location_key), null);
-            postalCode = postalCodePref != null ? postalCodePref:postalCode;
-            FetchWeatherAsync fetchWeatherAsync = new FetchWeatherAsync();
-            fetchWeatherAsync.execute(postalCode);
+            updateWeather();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateWeather() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        String postalCodePref = sharedPreferences.getString(getString(R.string.pref_location_key), null);
+        postalCode = postalCodePref != null ? postalCodePref:postalCode;
+        FetchWeatherAsync fetchWeatherAsync = new FetchWeatherAsync();
+        fetchWeatherAsync.execute(postalCode);
     }
 
 
@@ -83,27 +93,15 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
         final ListView listView = (ListView)rootView.findViewById(R.id.listview_forecast);
-        String[] forecasts = getForecasts();
-        final ArrayList<String> list = new ArrayList<>();
-        for(int i = 0;  i< forecasts.length; ++i){
-            list.add(forecasts[i]);
-        }
 
-
-        mForecastAdapter = new ArrayAdapter(inflater.getContext(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, list);
+        mForecastAdapter = new ArrayAdapter(inflater.getContext(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, new ArrayList<String>());
         listView.setAdapter(mForecastAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String forecastSelected = mForecastAdapter.getItem(position).toString();
-//                CharSequence text = forecastSelected;
-//                int duration = Toast.LENGTH_SHORT;
-//
-//                Toast toast = Toast.makeText(parent.getContext(), text, duration);
-//                toast.show();
                 Intent detailIntent = new Intent(getActivity(), DetailActivity.class)
                         .putExtra(Intent.EXTRA_TEXT, forecastSelected);
-                //downloadIntent.setData(Uri.parse(fileUrl));
                 startActivity(detailIntent);
             }
         });
