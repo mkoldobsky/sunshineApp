@@ -1,6 +1,7 @@
 package com.example.mkoldobsky.sunshine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
@@ -89,11 +90,15 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String forecastSelected = mForecastAdapter.getItem(position).toString();
-                CharSequence text = forecastSelected;
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(parent.getContext(), text, duration);
-                toast.show();
+//                CharSequence text = forecastSelected;
+//                int duration = Toast.LENGTH_SHORT;
+//
+//                Toast toast = Toast.makeText(parent.getContext(), text, duration);
+//                toast.show();
+                Intent detailIntent = new Intent(getActivity(), DetailActivity.class)
+                        .putExtra(Intent.EXTRA_TEXT, forecastSelected);
+                //downloadIntent.setData(Uri.parse(fileUrl));
+                startActivity(detailIntent);
             }
         });
 

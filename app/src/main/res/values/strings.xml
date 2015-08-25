@@ -6,4 +6,6 @@
     <string name="sampleMaxTempText">21º</string>
     <string name="sampleMinTempText">8º</string>
     <string name="refreshTitle">Refresh</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>
