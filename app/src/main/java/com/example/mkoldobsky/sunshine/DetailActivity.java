@@ -1,17 +1,20 @@
 package com.example.mkoldobsky.sunshine;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.ShareActionProvider;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private static final String FORECAST_SHARE_HASHTAG = "#sunshine";
+    private final String LOG_TAG = DetailActivity.class.getSimpleName();
+
     String forecast = "test";
+
+    private ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +23,14 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         forecast = intent.getStringExtra(Intent.EXTRA_TEXT);
         DetailActivityFragment fragment = (DetailActivityFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
-        fragment.setForecast(forecast);
+        fragment.setmForecast(forecast);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_detail, menu);
+
         return true;
     }
 
