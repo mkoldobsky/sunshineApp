@@ -1,4 +1,4 @@
-package com.example.android.sunshine.sunshine.data;
+package com.example.mkoldobsky.sunshine.sunshine.data;
 
 import android.content.ContentValues;
 import android.database.ContentObserver;
@@ -8,8 +8,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.test.AndroidTestCase;
 
-import com.example.android.sunshine.sunshine.utils.PollingCheck;
 import com.example.mkoldobsky.sunshine.data.WeatherContract;
+import com.example.mkoldobsky.sunshine.sunshine.utils.PollingCheck;
 
 import java.util.Map;
 import java.util.Set;
