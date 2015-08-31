@@ -1,10 +1,10 @@
 package com.example.mkoldobsky.sunshine;
 
-import android.app.LoaderManager;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
@@ -20,15 +20,12 @@ import android.widget.TextView;
 
 import com.example.mkoldobsky.sunshine.data.WeatherContract;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class DetailFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
+public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String FORECAST_SHARE_HASHTAG = " #sunshine";
-    private final String LOG_TAG = DetailFragment.class.getSimpleName();
+    private static final String LOG_TAG = DetailFragment.class.getSimpleName();
 
-    private TextView textView;
+    private static final String FORECAST_SHARE_HASHTAG = " #SunshineApp";
+
     private ShareActionProvider mShareActionProvider;
     private String mForecast;
 
@@ -83,11 +80,6 @@ public class DetailFragment extends Fragment implements android.support.v4.app.L
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, mForecast + FORECAST_SHARE_HASHTAG);
         return shareIntent;
-    }
-
-    public void setmForecast(String mForecast){
-        this.mForecast = mForecast;
-        textView.setText(this.mForecast);
     }
 
     @Override
@@ -145,6 +137,7 @@ public class DetailFragment extends Fragment implements android.support.v4.app.L
             mShareActionProvider.setShareIntent(createShareForecastIntent());
         }
     }
+
     @Override
     public void onLoaderReset(Loader<Cursor> loader) { }
 }
